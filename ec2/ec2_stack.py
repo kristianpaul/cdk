@@ -1,4 +1,5 @@
 from aws_cdk import (
+    aws_ec2 as ec2,
     aws_iam as iam,
     aws_sqs as sqs,
     aws_sns as sns,
@@ -11,13 +12,7 @@ class Ec2Stack(core.Stack):
     def __init__(self, scope: core.Construct, id: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
 
-        queue = sqs.Queue(
-            self, "Ec2Queue",
-            visibility_timeout=core.Duration.seconds(300),
+        vpc = ec2.Vpc(self, "VPC",
+        nat_gateways=0,
+        subnet_configuration=[ec2.SubnetConfiguration(name="public",subnet_type=ec2.SubnetType.PUBLIC)]
         )
-
-        topic = sns.Topic(
-            self, "Ec2Topic"
-        )
-
-        topic.add_subscription(subs.SqsSubscription(queue))
