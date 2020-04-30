@@ -1,9 +1,6 @@
 from aws_cdk import (
     aws_ec2 as ec2,
     aws_iam as iam,
-    aws_sqs as sqs,
-    aws_sns as sns,
-    aws_sns_subscriptions as subs,
     core
 )
 
