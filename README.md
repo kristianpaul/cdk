@@ -1,8 +1,15 @@
 
-# Welcome to your CDK Python project!
+# Welcome to my EC2 CDK Python project!
+
+I wanted to start playing with ec2 (compute) for me still really versatile service with
+interesting cost saving features like spot instances and system manager.
+
+
+# Instructions
 
 You should explore the contents of this project. It demonstrates a CDK app with an instance of a stack (`ec2_stack`)
-which contains an Amazon SQS queue that is subscribed to an Amazon SNS topic.
+which contains an Amazon VPC without NAT (for now)
+
 
 The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
@@ -43,23 +50,17 @@ At this point you can now synthesize the CloudFormation template for this code.
 $ cdk synth
 ```
 
-You can now begin exploring the source code, contained in the hello directory.
-There is also a very trivial test included that can be run like this:
+You can now begin exploring, deploying resources in your aws account.
 
 ```
-$ pytest
+$ cdk deploy
 ```
 
-To add additional dependencies, for example other CDK libraries, just add to
-your requirements.txt file and rerun the `pip install -r requirements.txt`
-command.
+and dont foget to delete later what you dont need.
 
-## Useful commands
 
- * `cdk ls`          list all stacks in the app
- * `cdk synth`       emits the synthesized CloudFormation template
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk docs`        open CDK documentation
+```
+$ cdk destroy
+```
 
 Enjoy!
