@@ -1,8 +1,13 @@
+from aws_cdk.aws_s3_assets import Asset
+import os.path
+dirname = os.path.dirname(__file__)
+
 from aws_cdk import (
     aws_ec2 as ec2,
     aws_iam as iam,
     core
 )
+
 
 class Ec2Stack(core.Stack):
 
@@ -31,3 +36,14 @@ class Ec2Stack(core.Stack):
         vpc = vpc,
         role = role
         )
+
+        asset = Asset(self, "Asset", path=os.path.join(dirname, "configure.sh"))
+        local_path = instance.user_data.add_s3_download_command(
+            bucket=asset.bucket,
+            bucket_key=asset.s3_object_key
+        )
+        instance.user_data.add_execute_file_command(
+            file_path=local_path,
+            arguments="--verbose -y"
+        )
+        asset.grant_read(instance.role)

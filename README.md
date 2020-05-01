@@ -44,11 +44,23 @@ Once the virtualenv is activated, you can install the required dependencies.
 $ pip install -r requirements.txt
 ```
 
+
+*Before deploying for the first time* you need to initialice assets.
+
+```
+$ cdk bootstrap
+```
+
+Those are used in this project to ditribute shell scripts.
+
 At this point you can now synthesize the CloudFormation template for this code.
+
 
 ```
 $ cdk synth
 ```
+
+
 
 You can now begin exploring, deploying resources in your aws account.
 
